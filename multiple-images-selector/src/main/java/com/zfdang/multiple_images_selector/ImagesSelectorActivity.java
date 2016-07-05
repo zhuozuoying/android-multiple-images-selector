@@ -229,11 +229,11 @@ public class ImagesSelectorActivity extends AppCompatActivity
                         List<ImageItem> results = new ArrayList<>();
 
                         Uri contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-                        String where = MediaStore.Images.Media.SIZE + " > " + SelectorSettings.mMinImageSize;
+                        //String where = MediaStore.Images.Media.SIZE + " > " + SelectorSettings.mMinImageSize;
                         String sortOrder = MediaStore.Images.Media.DATE_ADDED + " DESC";
 
                         contentResolver = getContentResolver();
-                        Cursor cursor = contentResolver.query(contentUri, projections, where, null, sortOrder);
+                        Cursor cursor = contentResolver.query(contentUri, projections, null, null, sortOrder);
                         if (cursor == null) {
                             Log.d(TAG, "call: " + "Empty images");
                         } else if (cursor.moveToFirst()) {
@@ -245,7 +245,7 @@ public class ImagesSelectorActivity extends AppCompatActivity
                                 String path = cursor.getString(pathCol);
                                 String name = cursor.getString(nameCol);
                                 long dateTime = cursor.getLong(DateCol);
-
+                                System.out.println("path=>" + path);
                                 ImageItem item = new ImageItem(name, path, dateTime);
 
                                 // if FolderListContent is still empty, add "All Images" option

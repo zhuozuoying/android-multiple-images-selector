@@ -19,7 +19,7 @@ public class FolderItem {
     }
 
     public String getNumOfImages() {
-        return String.format("%d", mImages.size());
+        return String.format("%d", path == null || "".equals(path) ? mImages.size() - 1 : mImages.size());
     }
 
     @Override
